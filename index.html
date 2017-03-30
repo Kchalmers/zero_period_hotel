@@ -5,17 +5,40 @@
 	<script>
 
 function Hotel(){
-
-	this.checkIn = function(roomID, name){
-		//add a guest to the hotel.  
-		//store the guest and the room that they checked into
+	this.guestArray = [];
+	for(var j = 0; j < 20; j++){
+	    this.guestArray.push('');
 	}
+	this.count = null;
+	this.checkIn = function(roomID, name){
+		//add a guest to the hotel.
+		this.guestArray.splice(roomID, 1, name);
+		//store the guest and the room that they checked into
+	};
 	this.checkOut = function(roomID){
 		//remove a guest from the hotel
-	}
+		this.guestArray.splice(roomID, 1);
+        this.guestArray.push('');
+	};
 	this.getVacancyCount = function(){
 		//returns the number of unoccupied rooms
-	}
+        this.count = 0;
+		for(var i = 0; i < this.guestArray.length; i++){
+
+		    if(this.guestArray[i] === ''){
+				this.count++;
+			}
+		}
+		return this.count;
+	};
+	this.checkIn(3, 'Kevin');
+    this.getVacancyCount();
+	console.log(this.guestArray);
+	console.log(count);
+	this.checkOut(3);
+    console.log(this.guestArray);
+    this.getVacancyCount();
+    console.log(count);
 }
 
 
